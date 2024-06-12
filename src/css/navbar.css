@@ -1,0 +1,54 @@
+.navbar {
+  width: 100%;
+  aspect-ratio: 14/1;
+  height: 100px;
+  min-height: fit-content;
+  background-color: #253b80;
+}
+.nav-logo {
+  background-image: url(./../assets/school-logo.png);
+  height: 100px;
+  aspect-ratio: 1/1;
+}
+.nav-item {
+  color: white;
+  cursor: pointer;
+  border-right: 1px solid #ccc;
+}
+.nav-item:hover {
+  background-color: #555;
+}
+.account {
+  display: flex;
+  grid-column: 10 / span 2;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+.account-toggle {
+  background-color: white;
+  position: absolute;
+  bottom: -18%;
+  color: black;
+  display: none;
+}
+.register,
+.login {
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.register:hover,
+.login:hover {
+  background-color: #ccc;
+}
+.account:hover .account-toggle {
+  display: flex;
+
+  flex-direction: column;
+}
+.register:active,
+.login:active {
+  background-color: #9d9d9d;
+}

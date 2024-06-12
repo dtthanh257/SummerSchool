@@ -1,0 +1,37 @@
+@import url(./navbar.css);
+@import url(./home.css);
+@import url(./login.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.bg-img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* Chia grid thành 12 cột */
+}
+.grid-10 {
+  grid-column: 2 / span 10;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+.flex-r {
+  display: flex;
+  flex-direction: row;
+}
+.flex-c {
+  display: flex;
+  flex-direction: column;
+}
+.center {
+  align-items: center;
+  justify-content: center;
+}
+.gap-8 {
+  gap: 8px;
+}
