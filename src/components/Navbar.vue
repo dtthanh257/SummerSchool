@@ -5,7 +5,7 @@
                 <div class="flex-r">
                     <div class="nav-logo bg-img"> </div>
                 </div>
-                <div class="flex-r center nav-item">
+                <div @click="goToIntroduction" class="flex-r center nav-item">
                     Giới thiệu
                 </div>
                 <div class="flex-r center nav-item">
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 const Navbar = {
     name: 'Navbar',
     data() {
@@ -48,15 +50,41 @@ const Navbar = {
         redirectToLogin() {
             this.$router.push('/login');
         },
+        //Kiểm tra trạng thái đăng nhập
         checkLogin() {
             const token = localStorage.getItem('jwt');
             if (token) {
-                const name = localStorage.getItem('nickname');
-                if (name) {
-                    this.accountName = name;
+                const userId = localStorage.getItem('id');
+                if (userId) {
+                    this.fetchUserInfo(userId);
                     this.isLoggedIn = true;
                 }
             }
+        },
+        async fetchUserInfo(userId) {
+            try {
+
+                const response = await axios.get(`http://localhost:5109/api/User/${userId}`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+                    }
+                });
+                this.accountName = response.data.name;
+            } catch (error) {
+                console.error("Error fetching user info:", error);
+            }
+        },
+        // Đăng xuất tài khoản
+        logout() {
+            localStorage.removeItem('jwt');
+            localStorage.removeItem('id');
+            this.isLoggedIn = false;
+            this.accountName = 'Tài khoản';
+            this.$router.push('/');
+        },
+        //Chuyển sang trang giới thiệu
+        goToIntroduction() {
+            this.$router.push('/introduction');
         }
     },
     created() {
